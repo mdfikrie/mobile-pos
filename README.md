@@ -1,11 +1,11 @@
-PRD POS Mobile
+# PRD POS Mobile
 
-1.	Client/Pembeli
+## Client/Pembeli
 
--	Auth 
-•	Login (Email password atau google sign in)
-•	Register (Email password)
-•	Email activation
+1.	Auth 
+  - Login (Email password atau google sign in)
+  -	Register (Email password)
+  -	Email activation
 •	Forgot password
 -	List Product
 •	List product berisi gambar, title, price dan tombol tambah pesanan serta tombol favorite untuk di masukkan ke list favorite
@@ -20,7 +20,7 @@ PRD POS Mobile
 -	Payment online/offline
 •	Payment bisa di lakukan secara online (sesuai yang disediakan midtrans) atau offline (Cash)
 
-2.	Merchant/Admin
+## Merchant/Admin
 
 -	Auth 
 •	Login (Email password atau google sign in)
@@ -28,7 +28,7 @@ PRD POS Mobile
 •	Email activation
 •	Forgot password
 
-3. Problem
+## Problem
 
 
 
