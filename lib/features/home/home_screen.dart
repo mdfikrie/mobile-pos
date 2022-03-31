@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mobile_pos/const/color.dart';
 import 'package:mobile_pos/features/home/widgets/banner.dart';
 import 'package:mobile_pos/features/home/widgets/search.dart';
@@ -38,56 +39,104 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Container(
+              child: DefaultTabController(
+                length: 2,
+                initialIndex: 0,
+                child: TabBar(
+                  labelColor: primaryGreen,
+                  labelStyle: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  unselectedLabelColor: Colors.grey,
+                  indicatorColor: primaryGreen,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  onTap: (value) {
+                    pageController.jumpToPage(value);
+                  },
+                  tabs: [
+                    Tab(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.fastfood),
+                          SizedBox(width: 5),
+                          Text(
+                            'Food',
+                          ),
+                        ],
+                      ),
+                    ),
+                    Tab(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.emoji_food_beverage),
+                          SizedBox(width: 5),
+                          Text('Drink'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 10),
           Expanded(
-            child: ListView(
+            child: PageView(
+              physics: NeverScrollableScrollPhysics(),
+              controller: pageController,
+              onPageChanged: (value) {},
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: BannerHome(),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Container(
-                    // height: 35,
-                    child: DefaultTabController(
-                      length: 2,
-                      initialIndex: 0,
-                      child: TabBar(
-                        labelColor: primaryGreen,
-                        labelStyle: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        unselectedLabelColor: Colors.grey,
-                        indicatorColor: primaryGreen,
-                        indicatorSize: TabBarIndicatorSize.tab,
-                        onTap: (value) {
-                          pageController.jumpToPage(value);
-                        },
-                        tabs: [
-                          Tab(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.fastfood),
-                                SizedBox(width: 5),
-                                Text(
-                                  'Food',
-                                ),
-                              ],
+                GridView.count(
+                  shrinkWrap: true,
+                  childAspectRatio: 4 / 5,
+                  crossAxisSpacing: 15,
+                  mainAxisSpacing: 20,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  // physics: NeverScrollableScrollPhysics(),
+                  crossAxisCount: 2,
+                  children: List.generate(
+                    10,
+                    (index) => Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/foods.png',
+                            width: 140,
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Nasi Goreng Ayam Spesial',
+                              maxLines: 2,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 15),
                             ),
                           ),
-                          Tab(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.emoji_food_beverage),
-                                SizedBox(width: 5),
-                                Text('Drink'),
-                              ],
+                          SizedBox(height: 5),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Rp. 10.000',
+                              style: TextStyle(
+                                color: primaryGreen,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ],
@@ -95,50 +144,20 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 500,
-                  child: PageView(
-                    controller: pageController,
-                    onPageChanged: (value) {},
-                    children: [
-                      GridView.count(
-                        shrinkWrap: true,
-                        childAspectRatio: 4 / 7,
-                        crossAxisSpacing: 15,
-                        mainAxisSpacing: 20,
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        physics: NeverScrollableScrollPhysics(),
-                        crossAxisCount: 2,
-                        children: List.generate(
-                          10,
-                          (index) => Container(
-                            alignment: Alignment.center,
-                            color: primaryGreen,
-                            child: Text('Makanan'),
-                          ),
-                        ),
-                      ),
-                      GridView.count(
-                        shrinkWrap: true,
-                        childAspectRatio: 4 / 7,
-                        crossAxisSpacing: 15,
-                        mainAxisSpacing: 20,
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        physics: NeverScrollableScrollPhysics(),
-                        crossAxisCount: 2,
-                        children: List.generate(
-                          10,
-                          (index) => Container(
-                            color: Colors.grey,
-                            alignment: Alignment.center,
-                            child: Text('Minuman'),
-                          ),
-                        ),
-                      ),
-                    ],
+                GridView.count(
+                  shrinkWrap: true,
+                  childAspectRatio: 4 / 7,
+                  crossAxisSpacing: 15,
+                  mainAxisSpacing: 20,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  crossAxisCount: 2,
+                  children: List.generate(
+                    10,
+                    (index) => Container(
+                      color: Colors.grey,
+                      alignment: Alignment.center,
+                      child: Text('Minuman'),
+                    ),
                   ),
                 ),
               ],
