@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:mobile_pos/const/color.dart';
-import 'package:mobile_pos/features/home/widgets/banner.dart';
 import 'package:mobile_pos/features/home/widgets/search.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -87,6 +85,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10),
+          // page view
           Expanded(
             child: PageView(
               physics: NeverScrollableScrollPhysics(),
@@ -96,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                 GridView.count(
                   shrinkWrap: true,
                   childAspectRatio: 4 / 5,
-                  crossAxisSpacing: 15,
+                  crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   // physics: NeverScrollableScrollPhysics(),
@@ -146,17 +145,51 @@ class HomeScreen extends StatelessWidget {
                 ),
                 GridView.count(
                   shrinkWrap: true,
-                  childAspectRatio: 4 / 7,
-                  crossAxisSpacing: 15,
+                  childAspectRatio: 4 / 5,
+                  crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   crossAxisCount: 2,
                   children: List.generate(
                     10,
                     (index) => Container(
-                      color: Colors.grey,
-                      alignment: Alignment.center,
-                      child: Text('Minuman'),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/tea.png',
+                            width: 140,
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Es Teh Manis',
+                              maxLines: 2,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 15),
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Rp. 2.000',
+                              style: TextStyle(
+                                color: primaryGreen,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
