@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mobile_pos/const/color.dart';
+import 'package:mobile_pos/features/favorite/favorite.dart';
 import 'package:mobile_pos/features/home/home_screen.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -27,7 +29,10 @@ class BottomNavigation extends StatelessWidget {
           selectedLabelStyle: TextStyle(color: Colors.blue, fontSize: 12),
           unselectedLabelStyle: TextStyle(color: Colors.grey, fontSize: 12),
           onTap: (value) {
-            pageController.jumpToPage(value);
+            // pageController.jumpToPage(value);
+            if (value == 1) {
+              Get.to(() => FavoriteScreen());
+            }
           },
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(

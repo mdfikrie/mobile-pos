@@ -23,42 +23,65 @@ class ListFoods extends StatelessWidget {
           onTap: () {
             Get.to(() => DescriptionProduct());
           },
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/foods.png',
-                  width: 140,
+          child: Stack(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Nasi Goreng Ayam Spesial',
-                    maxLines: 2,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                  ),
-                ),
-                SizedBox(height: 5),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Rp. 10.000',
-                    style: TextStyle(
-                      color: primaryGreen,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/foods.png',
+                      width: 140,
                     ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Nasi Goreng Ayam Spesial',
+                        maxLines: 2,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 15),
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Rp. 10.000',
+                        style: TextStyle(
+                          color: primaryGreen,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: 10,
+                right: 10,
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: grey300),
+                  ),
+                  child: Icon(
+                    Icons.favorite_border,
+                    color: primaryGreen,
+                    size: 18,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
