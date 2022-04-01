@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_pos/const/color.dart';
+import 'package:mobile_pos/features/home/widgets/list_drinks.dart';
+import 'package:mobile_pos/features/home/widgets/list_foods.dart';
 import 'package:mobile_pos/features/home/widgets/search.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -92,107 +94,8 @@ class HomeScreen extends StatelessWidget {
               controller: pageController,
               onPageChanged: (value) {},
               children: [
-                GridView.count(
-                  shrinkWrap: true,
-                  childAspectRatio: 4 / 5,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  // physics: NeverScrollableScrollPhysics(),
-                  crossAxisCount: 2,
-                  children: List.generate(
-                    10,
-                    (index) => Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/images/foods.png',
-                            width: 140,
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Nasi Goreng Ayam Spesial',
-                              maxLines: 2,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 15),
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Rp. 10.000',
-                              style: TextStyle(
-                                color: primaryGreen,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                GridView.count(
-                  shrinkWrap: true,
-                  childAspectRatio: 4 / 5,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  crossAxisCount: 2,
-                  children: List.generate(
-                    10,
-                    (index) => Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/images/tea.png',
-                            width: 140,
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Es Teh Manis',
-                              maxLines: 2,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 15),
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Rp. 2.000',
-                              style: TextStyle(
-                                color: primaryGreen,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                ListFoods(),
+                ListDrinks(),
               ],
             ),
           ),
