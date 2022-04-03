@@ -43,7 +43,7 @@ class CartsScreen extends StatelessWidget {
                     width: Get.width * 0.4,
                     decoration: BoxDecoration(
                       color: primaryGreen,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(50),
                     ),
                     alignment: Alignment.center,
                     child: Text(
