@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:mobile_pos/features/carts/cubit/cart_cubit.dart';
+import 'package:mobile_pos/models/cart_model.dart';
 
 import '../../../const/color.dart';
 import '../../description-product/description_product.dart';
@@ -10,7 +13,7 @@ class ListCarts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 9,
+      itemCount: dataCart.length,
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
@@ -33,7 +36,7 @@ class ListCarts extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     color: primaryGreen,
                   ),
-                  child: Image.asset('assets/images/foods.png'),
+                  child: Image.asset('${mapCartData[index].image}'),
                 ),
                 SizedBox(width: 10),
                 Expanded(
@@ -46,7 +49,7 @@ class ListCarts extends StatelessWidget {
                         children: [
                           SizedBox(height: 10),
                           Text(
-                            'Nasi Goreng Spesial',
+                            '${mapCartData[index].name}',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -54,7 +57,7 @@ class ListCarts extends StatelessWidget {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            'Rp. 15.000',
+                            '${mapCartData[index].harga}',
                             style: TextStyle(
                               fontSize: 14,
                               color: primaryGreen,
@@ -63,22 +66,52 @@ class ListCarts extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Container(
-                        height: 40,
-                        alignment: Alignment.centerRight,
-                        child: Container(
-                          height: 30,
-                          width: 30,
-                          margin: EdgeInsets.only(bottom: 10),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: grey300),
-                          ),
-                          child: Icon(
-                            Icons.favorite,
-                            color: primaryGreen,
-                            size: 18,
-                          ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                context.read<CartCubit>().decrementCart(index);
+                              },
+                              child: Container(
+                                height: 25,
+                                width: 25,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: grey200,
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Text('-'),
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            BlocBuilder<CartCubit, CartState>(
+                              builder: (context, state) {
+                                if (state is CartLoaded) {
+                                  return Text('${mapCartData[index].jumlah}');
+                                } else {
+                                  return Text('${mapCartData[index].jumlah}');
+                                }
+                              },
+                            ),
+                            SizedBox(width: 10),
+                            GestureDetector(
+                              onTap: () {
+                                context.read<CartCubit>().incrementCart(index);
+                              },
+                              child: Container(
+                                height: 25,
+                                width: 25,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: grey200,
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Text('+'),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],

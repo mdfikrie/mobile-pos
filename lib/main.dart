@@ -5,6 +5,7 @@ import 'package:get/route_manager.dart';
 import 'package:mobile_pos/const/color.dart';
 import 'package:mobile_pos/features/bottom-navigation/bottom_navigation.dart';
 import 'package:mobile_pos/features/bottom-navigation/cubit/cubit/bottom_nav_cubit.dart';
+import 'package:mobile_pos/features/carts/cubit/cart_cubit.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => BottomNavCubit()),
+        BlocProvider(create: (context) => CartCubit()),
       ],
       child: GetMaterialApp(
         home: BottomNavigation(),
