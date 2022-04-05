@@ -6,6 +6,7 @@ import 'package:mobile_pos/features/bottom-navigation/cubit/cubit/bottom_nav_cub
 import 'package:mobile_pos/features/carts/carts.dart';
 import 'package:mobile_pos/features/favorite/favorite.dart';
 import 'package:mobile_pos/features/home/home_screen.dart';
+import 'package:mobile_pos/features/profile/profile.dart';
 
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class BottomNavigation extends StatelessWidget {
                   HomeScreen(),
                   FavoriteScreen(),
                   CartsScreen(),
-                  HomeScreen(),
+                  ProfileScreen(),
                 ],
               ),
               bottomNavigationBar: BottomNavigationBar(
