@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:mobile_pos/features/carts/bloc/cart_bloc.dart';
 import 'package:mobile_pos/features/carts/cubit/select/select_cubit.dart';
 import 'package:mobile_pos/models/cart_model.dart';
 
 import '../../../const/color.dart';
 import '../../description-product/description_product.dart';
-import '../cubit/cart/cart_cubit.dart';
 
 class ListCarts extends StatelessWidget {
   const ListCarts({Key? key}) : super(key: key);
@@ -81,13 +81,16 @@ class ListCarts extends StatelessWidget {
                             children: [
                               GestureDetector(
                                 onTap: () {
+                                  // context
+                                  //     .read<CartCubit>()
+                                  //     .decrementCart(index);
                                   context
-                                      .read<CartCubit>()
-                                      .decrementCart(index);
+                                      .read<CartBloc>()
+                                      .add(RemoveEvent(index: index));
                                 },
                                 child: Container(
-                                  height: 25,
-                                  width: 25,
+                                  height: 30,
+                                  width: 30,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     color: grey200,
@@ -97,7 +100,7 @@ class ListCarts extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(width: 10),
-                              BlocBuilder<CartCubit, CartState>(
+                              BlocBuilder<CartBloc, CartState>(
                                 builder: (context, state) {
                                   if (state is CartLoaded) {
                                     return Text('${mapCartData[index].jumlah}');
@@ -110,12 +113,12 @@ class ListCarts extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {
                                   context
-                                      .read<CartCubit>()
-                                      .incrementCart(index);
+                                      .read<CartBloc>()
+                                      .add(AddEvent(index: index));
                                 },
                                 child: Container(
-                                  height: 25,
-                                  width: 25,
+                                  height: 30,
+                                  width: 30,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     color: grey200,
@@ -146,30 +149,41 @@ class ListCarts extends StatelessWidget {
                     },
                     child: BlocBuilder<SelectCubit, SelectState>(
                       builder: (context, state) {
-                        print(mapCartData[index].select);
-                        return mapCartData[index].select == true
-                            ? Container(
-                                height: 25,
-                                width: 25,
-                                decoration: BoxDecoration(
-                                  color: primaryGreen,
-                                  border: Border.all(color: primaryGreen),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Icon(
-                                  Icons.done,
-                                  color: Colors.white,
-                                  size: 18,
-                                ),
-                              )
-                            : Container(
-                                height: 25,
-                                width: 25,
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: primaryGreen),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                              );
+                        print(state);
+                        if (state is SelectLoaded) {
+                          return mapCartData[index].select == true
+                              ? Container(
+                                  height: 25,
+                                  width: 25,
+                                  decoration: BoxDecoration(
+                                    color: primaryGreen,
+                                    border: Border.all(color: primaryGreen),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: Icon(
+                                    Icons.done,
+                                    color: Colors.white,
+                                    size: 18,
+                                  ),
+                                )
+                              : Container(
+                                  height: 25,
+                                  width: 25,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: primaryGreen),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                );
+                        } else {
+                          return Container(
+                            height: 25,
+                            width: 25,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: primaryGreen),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          );
+                        }
                       },
                     ),
                   ),

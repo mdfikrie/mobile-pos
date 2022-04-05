@@ -5,8 +5,8 @@ import 'package:get/route_manager.dart';
 import 'package:mobile_pos/const/color.dart';
 import 'package:mobile_pos/features/bottom-navigation/bottom_navigation.dart';
 import 'package:mobile_pos/features/bottom-navigation/cubit/cubit/bottom_nav_cubit.dart';
+import 'package:mobile_pos/features/carts/bloc/cart_bloc.dart';
 import 'package:mobile_pos/features/carts/cubit/select/select_cubit.dart';
-
 import 'features/carts/cubit/cart/cart_cubit.dart';
 
 void main() {
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => BottomNavCubit()),
         BlocProvider(create: (context) => CartCubit()),
         BlocProvider(create: (context) => SelectCubit()),
+        BlocProvider(create: (context) => CartBloc()),
       ],
       child: GetMaterialApp(
         home: BottomNavigation(),
