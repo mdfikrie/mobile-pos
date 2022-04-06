@@ -23,6 +23,13 @@ class ListCarts extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 5,
+                offset: Offset(1, 1),
+              ),
+            ],
           ),
           child: Stack(
             children: [
