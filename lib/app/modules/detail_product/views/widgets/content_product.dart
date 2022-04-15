@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../constants/colors.dart';
+import '../../controllers/detail_product_controller.dart';
 
-class ContentProduct extends StatelessWidget {
+class ContentProduct extends GetView<DetailProductController> {
   const ContentProduct({Key? key}) : super(key: key);
 
   @override
@@ -24,12 +27,19 @@ class ContentProduct extends StatelessWidget {
               BoxShadow(
                 color: Colors.black38,
                 blurRadius: 10,
-              )
+                offset: Offset(2, 2),
+              ),
+              BoxShadow(
+                color: Colors.white,
+                blurRadius: 10,
+                offset: Offset(-5, -5),
+              ),
             ],
             image: DecorationImage(
-              image: AssetImage(
-                'assets/images/foods.png',
+              image: NetworkImage(
+                '${controller.product.path}',
               ),
+              fit: BoxFit.cover,
             ),
           ),
         ),
@@ -37,8 +47,8 @@ class ContentProduct extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            'Nasi Goreng Spesial',
-            style: TextStyle(
+            '${controller.product.nama}',
+            style: GoogleFonts.roboto(
               fontSize: 22,
               fontWeight: FontWeight.bold,
             ),
@@ -48,8 +58,8 @@ class ContentProduct extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            'Rp. 10.000',
-            style: TextStyle(
+            '${NumberFormat.currency(locale: 'ID', symbol: 'Rp. ', decimalDigits: 0).format(int.parse(controller.product.harga!))}',
+            style: GoogleFonts.roboto(
               color: primaryGreen,
               fontWeight: FontWeight.bold,
               fontSize: 18,
@@ -60,9 +70,9 @@ class ContentProduct extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            '${controller.product.keterangan}',
             textAlign: TextAlign.justify,
-            style: TextStyle(fontSize: 16, color: Colors.black54),
+            style: GoogleFonts.poppins(fontSize: 16, color: Colors.black54),
           ),
         ),
         SizedBox(height: 60),

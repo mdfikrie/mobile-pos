@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile_pos/app/routes/app_pages.dart';
 
@@ -14,17 +15,17 @@ class ListFoods extends GetView<HomeController> {
     return Obx(
       () => GridView.count(
         shrinkWrap: true,
-        childAspectRatio: 4 / 6,
-        crossAxisSpacing: 20,
-        mainAxisSpacing: 20,
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        // physics: NeverScrollableScrollPhysics(),
+        childAspectRatio: 4 / 5.5,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        padding: EdgeInsets.symmetric(horizontal: 10),
         crossAxisCount: 2,
         children: List.generate(
           controller.listProduct.length,
           (index) => GestureDetector(
             onTap: () {
-              Get.toNamed(Routes.DETAIL_PRODUCT);
+              Get.toNamed(Routes.DETAIL_PRODUCT,
+                  arguments: controller.listProduct[index]);
             },
             child: Stack(
               children: [
@@ -57,8 +58,10 @@ class ListFoods extends GetView<HomeController> {
                         child: Text(
                           '${controller.listProduct[index].nama}',
                           maxLines: 2,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15),
+                          style: GoogleFonts.roboto(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
+                          ),
                         ),
                       ),
                       SizedBox(height: 5),
@@ -66,9 +69,9 @@ class ListFoods extends GetView<HomeController> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '${NumberFormat.currency(locale: 'ID', decimalDigits: 0, symbol: 'Rp. ').format(int.parse(controller.listProduct[index].harga!))}',
-                          style: TextStyle(
+                          style: GoogleFonts.roboto(
                             color: primaryGreen,
-                            fontSize: 14,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

@@ -10,9 +10,9 @@ import 'widgets/top_bar_product.dart';
 class DetailProductView extends GetView<DetailProductController> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
           height: Get.height,
           width: Get.width,
           color: Colors.white,

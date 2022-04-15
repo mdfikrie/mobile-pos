@@ -20,7 +20,7 @@ class HomeView extends GetView<HomeController> {
             height: 20,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Container(
               alignment: Alignment.center,
               child: Column(
@@ -43,7 +43,7 @@ class HomeView extends GetView<HomeController> {
           ),
           SizedBox(height: 10),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Container(
               child: DefaultTabController(
                 length: 2,
