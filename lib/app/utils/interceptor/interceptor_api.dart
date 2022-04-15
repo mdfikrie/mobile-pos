@@ -17,6 +17,9 @@ class InterceptorApi extends Interceptor {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
+    if (err.response != null) {
+      print(err.response!.data['message']);
+    }
     super.onError(err, handler);
   }
 }

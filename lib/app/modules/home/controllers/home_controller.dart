@@ -36,16 +36,10 @@ class HomeController extends GetxController {
   void onClose() {}
 
   Future<void> loadProduct() async {
-    try {
-      dioResponse.Response response = await dio.get('product');
-      final result = (response.data as Map<String, dynamic>)['data'] as List;
-      listProduct.value =
-          await result.map((e) => ProductModel.fromJson(e)).toList();
-      print(listProduct[0].nama);
-    } on DioError catch (e) {
-      if (e.response != null) {
-        print(e.response!.data['message']);
-      }
-    }
+    dioResponse.Response response = await dio.get('product');
+    final result = (response.data as Map<String, dynamic>)['data'] as List;
+    listProduct.value =
+        await result.map((e) => ProductModel.fromJson(e)).toList();
+    print(listProduct[0].nama);
   }
 }
