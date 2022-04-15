@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../data/models/cart_model.dart';
+import '../../controllers/cart_controller.dart';
 
-class ListCarts extends StatelessWidget {
+class ListCarts extends GetView<CartController> {
   const ListCarts({Key? key}) : super(key: key);
 
   @override
@@ -83,7 +84,9 @@ class ListCarts extends StatelessWidget {
                           child: Row(
                             children: [
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  controller.decrementProduct(index);
+                                },
                                 child: Container(
                                   height: 30,
                                   width: 30,
@@ -99,7 +102,9 @@ class ListCarts extends StatelessWidget {
                               Text('${mapCartData[index].jumlah}'),
                               SizedBox(width: 10),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  controller.incrementProduct(index);
+                                },
                                 child: Container(
                                   height: 30,
                                   width: 30,
