@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:mobile_pos/app/data/database/favorite/favorite_model.dart';
 import 'package:mobile_pos/app/routes/app_pages.dart';
 
 import '../../../../constants/colors.dart';
@@ -82,18 +83,35 @@ class ListFoods extends GetView<HomeController> {
                 Positioned(
                   top: 10,
                   right: 10,
-                  child: Container(
-                    height: 30,
-                    width: 30,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: grey300),
-                    ),
-                    child: Icon(
-                      Icons.favorite_border,
-                      color: primaryGreen,
-                      size: 18,
+                  child: GestureDetector(
+                    onTap: () async {
+                      await controller.addFavorite(
+                        FavoriteModel(
+                          controller.listProduct[index].id,
+                          controller.listProduct[index].idKategori,
+                          controller.listProduct[index].nama,
+                          controller.listProduct[index].harga,
+                          controller.listProduct[index].diskon,
+                          controller.listProduct[index].status,
+                          controller.listProduct[index].foto,
+                          controller.listProduct[index].keterangan,
+                          controller.listProduct[index].path,
+                        ),
+                      );
+                    },
+                    child: Container(
+                      height: 30,
+                      width: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: grey300),
+                      ),
+                      child: Icon(
+                        Icons.favorite_border,
+                        color: primaryGreen,
+                        size: 18,
+                      ),
                     ),
                   ),
                 ),
